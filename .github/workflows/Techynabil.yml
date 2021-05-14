@@ -26,8 +26,6 @@ jobs:
       run: Set-LocalUser -Name "Kishan12" -Password (ConvertTo-SecureString -AsPlainText "12345678" -Force)
     - name: Create Tunnel
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
-    - name: Download Timeout Script
-      run: Invoke-WebRequest https://raw.githubusercontent.com/shieldwhite/timeout/WhiteShield/timeout.ps1 -OutFile timeout.ps1
     - name: Keep Alive
-      run: ./timeout.ps1
+      run: while(-not (Test-Path -Path 'C:\Test.txt')){Start-Sleep -Seconds 1}
  
